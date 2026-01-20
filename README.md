@@ -17,7 +17,7 @@ This project focuses on using computer vision techniques to detect and classify 
 
 ```
 Final-CV-Project-Submission/
-├── Dataset/
+├── Maltese Traffic Signs Dataset/
 │   ├── COCO Exports/     # Various annotations in COCO format
 │   │   ├── COCO.json     
 │   │   ├── COCO_mounting.json
