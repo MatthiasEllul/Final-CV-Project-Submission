@@ -37,7 +37,7 @@ Final-CV-Project-Submission/
 │   ├── merged_images.zip               # All captured images
 │   ├── merged_input.json               # All annotations               
 ├── 1_data_visualisation.ipynb          # Dataset statistics
-├── 2a_[architecture_name]__[student].ipynb           # Object detection models (one per student - four total)
+├── 2a_[architecture_name]__[student].ipynb  # Object detection models (one per student - four total)
 ├── 2b_[attribute]_[student].ipynb  # Attribute classification models (one per student - four total)
 ├── 2c_results_comparison.ipynb         # Compare all models
 └── README.md                           # This file
