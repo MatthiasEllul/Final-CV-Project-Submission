@@ -5,7 +5,7 @@
 
 **Team Members:** Luca Bugeja, Liam Debono, Matthias Ellul, Remi Heijmans
 
-**Deadline:** 21st January 2026
+**Deadline:** 31st January 2026
 
 ---
 
@@ -17,15 +17,14 @@ This project focuses on using computer vision techniques to detect and classify 
 
 ```
 Final-CV-Project-Submission/
-├── Maltese Traffic Signs Dataset/
-│   ├── COCO Exports/     # Various annotations in COCO format
-│   │   ├── COCO.json     
-│   │   ├── COCO_mounting.json
-│   │   ├── COCO_sign_condition.json
-│   │   ├── COCO_sign_shape.json
-│   │   ├── COCO_sign_type.json
-│   │   ├── COCO_viewing_angle.json
-│   ├── Individuals/     # Images & Annotations of each member
+├── 1_data_visualisation.ipynb               # Dataset statistics
+├── 2a_[architecture_name]__[student].ipynb  # Object detection models (one per student - four total)
+├── 2b_[attribute]_[student].ipynb           # Attribute classification models (one per student - four total)
+├── 2c_results_comparison.ipynb              # Compare all models
+├── ARI3129 Group 6 Documentation.pdf        # Group Documentation
+├── ARI3129 Group 6 GenAI Journal.pdf        # Group Generative AI Journal
+├── Maltese Traffic Signs Dataset/           # Link to the dataset folder
+│   ├── Individuals/                         # Images & Annotations of each member
 │   │   ├── images_Liam_Debono.zip
 │   │   ├── images_Luca_Bugeja.zip
 │   │   ├── images_Matthias_Ellul.zip
@@ -34,13 +33,16 @@ Final-CV-Project-Submission/
 │   │   ├── input_Luca_Bugeja.json
 │   │   ├── input_Matthias_Ellul.json
 │   │   ├── input_Remi_Heijmans.json
-│   ├── merged_images.zip               # All captured images
-│   ├── merged_input.json               # All annotations               
-├── 1_data_visualisation.ipynb          # Dataset statistics
-├── 2a_[architecture_name]__[student].ipynb  # Object detection models (one per student - four total)
-├── 2b_[attribute]_[student].ipynb  # Attribute classification models (one per student - four total)
-├── 2c_results_comparison.ipynb         # Compare all models
-└── README.md                           # This file
+│   ├── COCO Exports/                        # Various annotations in COCO format
+│   │   ├── COCO.json     
+│   │   ├── COCO_mounting.json
+│   │   ├── COCO_sign_condition.json
+│   │   ├── COCO_sign_shape.json
+│   │   ├── COCO_sign_type.json
+│   │   ├── COCO_viewing_angle.json
+│   ├── merged_input.json                    # All annotations               
+│   ├── merged_images.zip                    # All captured images
+└── README.md                                # This file
 ```
 
 ---
@@ -83,7 +85,6 @@ This notebook generates:
 - Distribution tables for all sign types and attributes
 - Sample annotated images
 - Dataset balance analysis
-- Image quality statistics
 
 ---
 
@@ -91,14 +92,13 @@ This notebook generates:
 
 ### 2a: Traffic Sign Detection Models
 
-Each team member trains a different object detection model:
+Each team member trains a different object detection model, tasked with detecting and classifying traffic signs:
 
 #### Matthias Ellul: YOLOv8
 ```bash
 jupyter notebook 2a_yolov8_matthias.ipynb
 ```
 - **Architecture:** YOLOv8n (Nano)
-- **Task:** Detect and classify traffic signs
 - **Achieved mAP50:** 72.4%
 
 #### Luca Bugeja: YOLOv11
@@ -106,7 +106,6 @@ jupyter notebook 2a_yolov8_matthias.ipynb
 jupyter notebook 2a_yolov11_LucaBugeja.ipynb
 ```
 - **Architecture:** YOLOv11n
-- **Task:** Detect and classify traffic signs
 - **Achieved mAP50:** 85%
 
 #### Liam Debono: Faster R-CNN
@@ -114,7 +113,6 @@ jupyter notebook 2a_yolov11_LucaBugeja.ipynb
 jupyter notebook 2a_fasterrcnn_Liam.ipynb
 ```
 - **Architecture:** Faster R-CNN (ResNet50 backbone)
-- **Task:** Detect and classify traffic signs
 - **Achieved mAP50:** 30.9%
 
 #### Remi Heijmans: Faster R-CNN
@@ -122,7 +120,6 @@ jupyter notebook 2a_fasterrcnn_Liam.ipynb
 jupyter notebook 2a_faster_rcnn_remi.ipynb
 ```
 - **Architecture:** RetinaNet (ResNet50 backbone)
-- **Task:** Detect and classify traffic signs
 - **Achieved mAP50:** 59.4%
 
 
@@ -132,34 +129,37 @@ jupyter notebook 2a_faster_rcnn_remi.ipynb
 
 Each team member trains a classifier for one specific attribute:
 
-### Remi Heijmans: Viewing Angle Classification
+### Matthias Ellul: Sign Shape Classification
 ```bash
-jupyter notebook 2b_viewing_angle_remi.ipynb
+jupyter notebook 2b_sign_shape_matthias.ipynb
 ```
-- **Classes:** Front, Back, Side
-- **Expected Accuracy:** 91.4%
+- **Architecture:** TF / Keras
+- **Classes:** Circular, Square, Triangular, Octagonal, Damaged
+- **Achieved Accuracy:** 86.9%
 
 ### Luca Bugeja: Mounting Type Classification
 ```bash
 jupyter notebook 2b_MountingType_LucaBugeja.ipynb
 ```
+- **Architecture:** YOLOv11
 - **Classes:** Wall-mounted, Pole-mounted
-- **Expected Accuracy:** 85%
+- **Achieved Accuracy:** 85%
 
 ### Liam Debono: Sign Condition Classification
 ```bash
 jupyter notebook 2b_sign_condition_Liam.ipynb
 ```
+- **Architecture:** PyTorch
 - **Classes:** Good, Weathered, Heavily Damaged
-- **Expected Accuracy:** 79.6%
+- **Achieved Accuracy:** 79.6%
 
-### Matthias Ellul: Sign Shape Classification
+### Remi Heijmans: Viewing Angle Classification
 ```bash
-jupyter notebook 2b_sign_shape_matthias.ipynb
+jupyter notebook 2b_viewing_angle_remi.ipynb
 ```
-- **Classes:** Circular, Square, Triangular, Octagonal, Damaged
-- **Achieved Accuracy:** 86.9%
-
+- **Architecture:** YOLOv8
+- **Classes:** Front, Back, Side
+- **Achieved Accuracy:** 91.4%
 ---
 
 ## 📈 Task 2c: Results Comparison
@@ -172,18 +172,7 @@ This notebook:
 - Compares all object detection models
 - Compares all attribute classification models
 - Generates comprehensive visualizations
-- Produces statistical analysis
 - Ranks models by performance
-- Exports comparison reports
-
-### Generated Outputs
-
-1. **detection_models_comparison.png** - Detection metrics visualization
-2. **classification_models_comparison.png** - Classification metrics visualization
-3. **detection_training_curves.png** - Training progression for all detectors
-4. **classification_training_curves.png** - Training progression for all classifiers
-5. **models_comparison_report.json** - Detailed JSON report
-6. **team_summary.csv** - Summary table of all results
 
 ---
 
@@ -197,18 +186,8 @@ Located in: `ARI3129 Group6 Documentation.pdf`
 1. Introduction
 2. Background on the Techniques Used
 3. Data Preparation
-   - Dataset collection methodology
-   - Annotation process
-   - Data augmentation strategies
-   - Dataset balance analysis
 4. Implementation of the Object Detectors
-   - Architecture descriptions
-   - Training procedures
-   - Hyperparameter tuning
 5. Evaluation of the Object Detectors
-   - Metrics analysis (mAP, Precision, Recall)
-   - Per-class performance
-   - Comparison of architectures
 6. References and List of Resources Used
 
 ### Generative AI Journal (10 pages max)
@@ -216,13 +195,13 @@ Located in: `ARI3129 Group6 Documentation.pdf`
 Located in: `ARI3129 Group6 GenAI Journal.pdf`
 
 **Contents:**
-1. Introduction - AI tools used
+1. Introduction
 2. Ethical Considerations
-3. Methodology - Integration process
-4. Prompts and Responses - Notable examples
+3. Methodology
+4. Prompts and Responses
 5. Improvements, Errors, and Contributions
-6. Individual Reflections (per team member)
-7. References and List of Resources Used
+6. Individual Reflection
+7. References and Resources Used
 
 ---
 
@@ -266,10 +245,10 @@ Located in: `ARI3129 Group6 GenAI Journal.pdf`
 
 | Student | Detector | Attribute |
 |---------|----------|-----------|
-| Matthias Ellul | YOLOv8 | Sign Shape |
-| Luca Bugeja | YOLOv11 | Mounting Type |
-| Liam Debono | Faster R-CNN | Sign Condition |
-| Remi Heijmans | RetinaNet | Sign Shape |
+| Matthias Ellul | YOLOv8 | TF / Keras for Sign Shape |
+| Luca Bugeja | YOLOv11 | YOLOv11 for Mounting Type |
+| Liam Debono | Faster R-CNN | PyTorch for Sign Condition |
+| Remi Heijmans | RetinaNet | YOLOv8 for Viewing Angle |
 
 ---
 
